@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <title>jung choi's galaxy</title>
-  <meta name="description" content="
-  jung's portfolio (v1.1)
-  portfolio content made in unity, built with WebGL
-  ">
-  <meta name="author" content="Jung Choi" />
-  <!-- <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
-  <link rel="stylesheet" media="screen" href="css/style.css">
-</head>
-
-<body style="margin: 0">
-  <!-- scripts -->
-  <canvas id="unity-canvas" width=1280 height=720 tabindex="-1" style="width: 100vw; height: 100vh; background: #231F20"></canvas>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>jung choi's galaxy</title>
+    <meta name="description" content="
+    jung's galaxy portfolio (v1.2). 
+    built through unity with WebGL.">
+  </head>
+  <body style="text-align: center; padding: 0; border: 0; margin: 0;">
+    <div id="loading-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 24px; z-index: 10; font-family: 'Arial', sans-serif;"">
+      placing stars, please wait...
+    </div>
+    <canvas id="unity-canvas" width=1280 height=720 tabindex="-1" style="width: 100vw; height: 100vh; background: #231F20"></canvas>
     <script src="Build/Builds.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -34,6 +30,7 @@
         document.body.style.textAlign = "left";
       }
 
+      const loadingText = document.getElementById('loading-text');
       createUnityInstance(document.querySelector("#unity-canvas"), {
         dataUrl: "Build/Builds.data",
         frameworkUrl: "Build/Builds.framework.js",
@@ -42,10 +39,9 @@
         companyName: "DefaultCompany",
         productName: "portfolio",
         productVersion: "1.0",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      }).then(() => {
+        loadingText.style.display = 'none';
       });
     </script>
-</body>
-
+  </body>
 </html>
